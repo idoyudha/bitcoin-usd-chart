@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin-USD Price Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 800px;">
+        <canvas id="bitcoinUSDChart" width="800" height="600"></canvas>
+    </div>
+
+    <script>
+        const dates = {{ dates | tojson }};
+        const prices = {{ prices | tojson }};
+
+        const bitcoinData = {
+            labels: dates.map(timestamp => new Date(timestamp).toLocaleDateString()),
+            datasets: [{
+                label: 'Bitcoin Price (USD)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 2,
+                data: prices,
+                fill: {
+                    target: 'origin',
+                    above: 'rgb(255, 0, 0)',   // Area will be red above the origin
+                    below: 'rgb(0, 0, 255)'    // And blue below the origin
+                },
+                pointRadius: 0
+            }]
+        };
+
+        // Create the Bitcoin price chart
+        const bitcoinChart = new Chart(document.getElementById('bitcoinUSDChart'), {
+            type: 'line',
+            data: bitcoinData,
+        });
+    </script>
+</body>
+</html>
