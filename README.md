@@ -19,4 +19,4 @@ To learn more about Flask, take a look at the following resources:
 [Github](https://github.com/idoyudha/bitcoin-usd-chart)
 
 ## Images
-![Snippet] (/images/snippet.png)
+- ![Snippet](/images/snippet.png?raw=true)
